@@ -41,7 +41,7 @@
             padding: 0 20px;
         }
 
-        /* Header Styles */
+        /* Header Styles - Fixed */
         header {
             background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
             color: white;
@@ -65,8 +65,14 @@
             gap: 15px;
         }
 
-        .logo img {
-            height: 60px;
+        .logo-icon {
+            background: rgba(255,255,255,0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .logo-text {
@@ -82,6 +88,12 @@
         .logo p {
             font-size: 0.9rem;
             opacity: 0.9;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
 
         nav ul {
@@ -128,12 +140,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-left: 20px;
         }
 
         .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: rgba(255,255,255,0.2);
             display: flex;
@@ -393,130 +404,38 @@
             background: var(--accent);
         }
 
-        .review-form {
-            background: rgba(255, 255, 255, 0.95);
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
             border-radius: var(--border-radius);
-            padding: 20px;
-            margin-top: 20px;
+            background: var(--primary);
+            color: white;
             box-shadow: var(--shadow);
-            display: none;
-        }
-
-        .review-form.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: var(--border-radius);
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .rating-input {
+            z-index: 1001;
             display: flex;
+            align-items: center;
             gap: 10px;
-            align-items: center;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
         }
 
-        .star-rating {
-            display: flex;
-            gap: 5px;
+        .notification.show {
+            transform: translateX(0);
         }
 
-        .star-rating i {
-            font-size: 1.5rem;
-            color: #ddd;
-            cursor: pointer;
-            transition: var(--transition);
+        .notification i {
+            font-size: 1.2rem;
         }
 
-        .star-rating i.active {
-            color: var(--secondary);
+        .notification.success {
+            background: #28a745;
         }
 
-        /* Reviews Section */
-        .reviews-container {
-            margin-top: 30px;
-            border-top: 2px solid var(--light);
-            padding-top: 20px;
-        }
-
-        .reviews-title {
-            margin-bottom: 20px;
-            color: var(--dark);
-            font-size: 1.4rem;
-        }
-
-        .review-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow);
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .review-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .review-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            margin-right: 15px;
-        }
-
-        .review-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .review-author {
-            font-weight: 600;
-        }
-
-        .review-date {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        .review-stars {
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-
-        .no-reviews {
-            text-align: center;
-            padding: 20px;
-            color: var(--gray);
-            font-style: italic;
+        .notification.error {
+            background: #dc3545;
         }
 
         /* Sign In Modal */
@@ -673,60 +592,14 @@
             font-size: 0.9rem;
         }
 
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            border-radius: var(--border-radius);
-            background: var(--primary);
-            color: white;
-            box-shadow: var(--shadow);
-            z-index: 1001;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transform: translateX(120%);
-            transition: transform 0.3s ease;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification i {
-            font-size: 1.2rem;
-        }
-
-        .notification.success {
-            background: #28a745;
-        }
-
-        .notification.error {
-            background: #dc3545;
-        }
-
-        /* Loader */
-        .loader {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive Design */
+        /* Responsive Design - Fixed */
         @media (max-width: 992px) {
-            .events-container {
-                grid-template-columns: 1fr;
+            .header-right {
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
             }
         }
 
@@ -739,6 +612,12 @@
             
             .logo {
                 justify-content: center;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
             }
             
             nav ul {
@@ -768,7 +647,8 @@
 
         @media (max-width: 576px) {
             nav ul {
-                gap: 15px;
+                gap: 10px;
+                flex-wrap: wrap;
             }
             
             .mobile-menu {
@@ -804,11 +684,15 @@
             .section-title h2 {
                 font-size: 1.8rem;
             }
+            
+            .header-right {
+                align-items: stretch;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header - Fixed Positioning -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -825,14 +709,16 @@
                 <i class="fas fa-bars"></i>
             </div>
             
-            <nav>
-                <ul>
-                    <li><a href="#" class="active">Home</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">Clubs</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Resources</a></li>
-                </ul>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Clubs</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Resources</a></li>
+                    </ul>
+                </nav>
                 
                 <div id="user-info" class="user-info">
                     <!-- Will be populated when user signs in -->
@@ -843,7 +729,7 @@
                         <i class="fab fa-google"></i> Sign In
                     </button>
                 </div>
-            </nav>
+            </div>
         </div>
     </header>
 
@@ -949,10 +835,14 @@
                     </div>
                     <div class="course-body">
                         <div class="rating">
-                            <div class="stars" id="avg-stars-174">
-                                <!-- Will be populated dynamically -->
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
                             </div>
-                            <span id="avg-rating-174">Loading ratings...</span>
+                            <span>4.2/5.0 (87 reviews)</span>
                         </div>
                         <p>Learn Python fundamentals and problem solving techniques. Great introduction to programming concepts.</p>
                         <div class="difficulty">
@@ -965,41 +855,6 @@
                                 <div class="diff-dot"></div>
                             </div>
                         </div>
-                        
-                        <button class="btn" id="review-btn-174" style="width: 100%; margin-top: 20px;">
-                            <i class="fas fa-pencil-alt"></i> Add Review
-                        </button>
-                        
-                        <div class="review-form" id="review-form-174">
-                            <h3>Your Review</h3>
-                            <div class="form-group">
-                                <label>Rating</label>
-                                <div class="rating-input">
-                                    <div class="star-rating" id="rating-stars-174">
-                                        <i class="far fa-star" data-rating="1"></i>
-                                        <i class="far fa-star" data-rating="2"></i>
-                                        <i class="far fa-star" data-rating="3"></i>
-                                        <i class="far fa-star" data-rating="4"></i>
-                                        <i class="far fa-star" data-rating="5"></i>
-                                    </div>
-                                    <span id="rating-value-174">0/5</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="review-text-174">Review</label>
-                                <textarea id="review-text-174" placeholder="Share your experience with this course..."></textarea>
-                            </div>
-                            <button class="btn" id="submit-review-174">
-                                <i class="fas fa-paper-plane"></i> Submit Review
-                            </button>
-                        </div>
-                        
-                        <div class="reviews-container" id="reviews-container-174">
-                            <h3 class="reviews-title">Recent Reviews</h3>
-                            <div class="no-reviews">
-                                <i class="fas fa-spinner fa-spin"></i> Loading reviews...
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -1010,10 +865,14 @@
                     </div>
                     <div class="course-body">
                         <div class="rating">
-                            <div class="stars" id="avg-stars-204">
-                                <!-- Will be populated dynamically -->
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
                             </div>
-                            <span id="avg-rating-204">Loading ratings...</span>
+                            <span>4.5/5.0 (63 reviews)</span>
                         </div>
                         <p>Essential course covering fundamental algorithms and data structures. Challenging but rewarding.</p>
                         <div class="difficulty">
@@ -1026,41 +885,6 @@
                                 <div class="diff-dot"></div>
                             </div>
                         </div>
-                        
-                        <button class="btn" id="review-btn-204" style="width: 100%; margin-top: 20px;">
-                            <i class="fas fa-pencil-alt"></i> Add Review
-                        </button>
-                        
-                        <div class="review-form" id="review-form-204">
-                            <h3>Your Review</h3>
-                            <div class="form-group">
-                                <label>Rating</label>
-                                <div class="rating-input">
-                                    <div class="star-rating" id="rating-stars-204">
-                                        <i class="far fa-star" data-rating="1"></i>
-                                        <i class="far fa-star" data-rating="2"></i>
-                                        <i class="far fa-star" data-rating="3"></i>
-                                        <i class="far fa-star" data-rating="4"></i>
-                                        <i class="far fa-star" data-rating="5"></i>
-                                    </div>
-                                    <span id="rating-value-204">0/5</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="review-text-204">Review</label>
-                                <textarea id="review-text-204" placeholder="Share your experience with this course..."></textarea>
-                            </div>
-                            <button class="btn" id="submit-review-204">
-                                <i class="fas fa-paper-plane"></i> Submit Review
-                            </button>
-                        </div>
-                        
-                        <div class="reviews-container" id="reviews-container-204">
-                            <h3 class="reviews-title">Recent Reviews</h3>
-                            <div class="no-reviews">
-                                <i class="fas fa-spinner fa-spin"></i> Loading reviews...
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -1071,10 +895,14 @@
                     </div>
                     <div class="course-body">
                         <div class="rating">
-                            <div class="stars" id="avg-stars-366">
-                                <!-- Will be populated dynamically -->
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
                             </div>
-                            <span id="avg-rating-366">Loading ratings...</span>
+                            <span>4.8/5.0 (42 reviews)</span>
                         </div>
                         <p>Explore the fundamentals of machine learning and AI. Prerequisites include linear algebra and probability.</p>
                         <div class="difficulty">
@@ -1087,41 +915,61 @@
                                 <div class="diff-dot"></div>
                             </div>
                         </div>
-                        
-                        <button class="btn" id="review-btn-366" style="width: 100%; margin-top: 20px;">
-                            <i class="fas fa-pencil-alt"></i> Add Review
-                        </button>
-                        
-                        <div class="review-form" id="review-form-366">
-                            <h3>Your Review</h3>
-                            <div class="form-group">
-                                <label>Rating</label>
-                                <div class="rating-input">
-                                    <div class="star-rating" id="rating-stars-366">
-                                        <i class="far fa-star" data-rating="1"></i>
-                                        <i class="far fa-star" data-rating="2"></i>
-                                        <i class="far fa-star" data-rating="3"></i>
-                                        <i class="far fa-star" data-rating="4"></i>
-                                        <i class="far fa-star" data-rating="5"></i>
-                                    </div>
-                                    <span id="rating-value-366">0/5</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="review-text-366">Review</label>
-                                <textarea id="review-text-366" placeholder="Share your experience with this course..."></textarea>
-                            </div>
-                            <button class="btn" id="submit-review-366">
-                                <i class="fas fa-paper-plane"></i> Submit Review
-                            </button>
-                        </div>
-                        
-                        <div class="reviews-container" id="reviews-container-366">
-                            <h3 class="reviews-title">Recent Reviews</h3>
-                            <div class="no-reviews">
-                                <i class="fas fa-spinner fa-spin"></i> Loading reviews...
-                            </div>
-                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clubs Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student Clubs</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>CSSA</h3>
+                        <p>Computer Science Students' Association. The official student society representing all CS undergrads at UAlberta.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>AI Club</h3>
+                        <p>Exploring artificial intelligence through workshops, projects, and competitions. Open to all skill levels.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Cyber Security Club</h3>
+                        <p>Learn about cybersecurity through CTF competitions, workshops, and guest lectures from industry experts.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px;">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Game Development Club</h3>
+                        <p>Create games, learn game engines, and participate in game jams with fellow developers and designers.</p>
+                        <a href="#" class="btn" style="margin-top: 15px; padding: 8px 20px;">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -1183,19 +1031,17 @@
 
     <script>
         // Firebase configuration - REPLACE WITH YOUR CREDENTIALS
-        const firebaseConfig = {
-            apiKey: "AIzaSyAfQtPS_hyckUBxKPmoKOzLwgprn9llyno",
-            authDomain: "uofacshub-4a1f9.firebaseapp.com",
-            projectId: "uofacshub-4a1f9",
-            storageBucket: "uofacshub-4a1f9.firebasestorage.app",
-            messagingSenderId: "217242194861",
-            appId: "1:217242194861:web:a7c8fe4cc6be5883c78724"
-            };
+        const firebaseConfig = {apiKey: "AIzaSyAfQtPS_hyckUBxKPmoKOzLwgprn9llyno",
+        authDomain: "uofacshub-4a1f9.firebaseapp.com",
+        projectId: "uofacshub-4a1f9",
+        storageBucket: "uofacshub-4a1f9.firebasestorage.app",
+        messagingSenderId: "217242194861",
+        appId: "1:217242194861:web:a7c8fe4cc6be5883c78724"
+    };
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-        const db = firebase.firestore();
         const provider = new firebase.auth.GoogleAuthProvider();
 
         // DOM Elements
@@ -1208,16 +1054,6 @@
         const joinCommunityBtn = document.getElementById('join-community-btn');
         const notification = document.getElementById('notification');
         const notificationMessage = document.getElementById('notification-message');
-
-        // Course review buttons
-        const reviewBtns = document.querySelectorAll('[id^="review-btn-"]');
-        const reviewForms = document.querySelectorAll('[id^="review-form-"]');
-        const submitReviewBtns = document.querySelectorAll('[id^="submit-review-"]');
-        const starRatings = document.querySelectorAll('[id^="rating-stars-"]');
-        const ratingValues = document.querySelectorAll('[id^="rating-value-"]');
-        const reviewsContainers = document.querySelectorAll('[id^="reviews-container-"]');
-        const avgStarsContainers = document.querySelectorAll('[id^="avg-stars-"]');
-        const avgRatingTexts = document.querySelectorAll('[id^="avg-rating-"]');
 
         // Track authentication state
         auth.onAuthStateChanged(user => {
@@ -1258,84 +1094,6 @@
 
         googleSignInBtn.addEventListener('click', signInWithGoogle);
 
-        // Review form toggle
-        reviewBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (!auth.currentUser) {
-                    signinModal.classList.add('active');
-                    return;
-                }
-                
-                const courseId = btn.id.split('-')[2];
-                const reviewForm = document.getElementById(`review-form-${courseId}`);
-                
-                // Toggle review form visibility
-                reviewForms.forEach(form => form.classList.remove('active'));
-                reviewForm.classList.add('active');
-                
-                // Scroll to form
-                reviewForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-        });
-
-        // Star rating functionality
-        starRatings.forEach(ratingContainer => {
-            const stars = ratingContainer.querySelectorAll('i');
-            const courseId = ratingContainer.id.split('-')[2];
-            const ratingValue = document.getElementById(`rating-value-${courseId}`);
-            
-            stars.forEach(star => {
-                star.addEventListener('click', () => {
-                    const rating = parseInt(star.getAttribute('data-rating'));
-                    
-                    // Update stars
-                    stars.forEach((s, index) => {
-                        if (index < rating) {
-                            s.classList.remove('far');
-                            s.classList.add('fas', 'active');
-                        } else {
-                            s.classList.remove('fas', 'active');
-                            s.classList.add('far');
-                        }
-                    });
-                    
-                    // Update rating text
-                    ratingValue.textContent = `${rating}/5`;
-                });
-            });
-        });
-
-        // Submit review
-        submitReviewBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const courseId = btn.id.split('-')[2];
-                const reviewText = document.getElementById(`review-text-${courseId}`).value;
-                const ratingStars = document.getElementById(`rating-stars-${courseId}`).querySelectorAll('.fas.active');
-                
-                if (ratingStars.length === 0) {
-                    showNotification('Please select a rating', 'error');
-                    return;
-                }
-                
-                const rating = ratingStars.length;
-                const user = auth.currentUser;
-                
-                // Create review object
-                const review = {
-                    courseId: courseId,
-                    userId: user.uid,
-                    userName: user.displayName,
-                    userPhoto: user.photoURL,
-                    rating: rating,
-                    text: reviewText,
-                    date: new Date().toISOString()
-                };
-                
-                // Save to Firestore
-                saveReview(review, courseId);
-            });
-        });
-
         // Functions
         function signInWithGoogle() {
             auth.signInWithPopup(provider)
@@ -1361,154 +1119,6 @@
                 });
         }
 
-        function saveReview(review, courseId) {
-            // Show loading state
-            const submitBtn = document.getElementById(`submit-review-${courseId}`);
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="loader"></span> Submitting...';
-            submitBtn.disabled = true;
-            
-            // Add to Firestore
-            db.collection('reviews').add(review)
-                .then(() => {
-                    // Success
-                    showNotification('Review submitted successfully!', 'success');
-                    
-                    // Hide the form
-                    document.getElementById(`review-form-${courseId}`).classList.remove('active');
-                    
-                    // Reset form
-                    document.getElementById(`review-text-${courseId}`).value = '';
-                    const stars = document.getElementById(`rating-stars-${courseId}`).querySelectorAll('i');
-                    stars.forEach(star => {
-                        star.classList.remove('fas', 'active');
-                        star.classList.add('far');
-                    });
-                    document.getElementById(`rating-value-${courseId}`).textContent = '0/5';
-                    
-                    // Reload reviews for this course
-                    loadReviewsForCourse(courseId);
-                })
-                .catch(error => {
-                    console.error('Error saving review:', error);
-                    showNotification('Failed to submit review. Please try again.', 'error');
-                })
-                .finally(() => {
-                    // Restore button state
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                });
-        }
-
-        function loadReviewsForCourse(courseId) {
-            const container = document.getElementById(`reviews-container-${courseId}`);
-            container.innerHTML = '<h3 class="reviews-title">Recent Reviews</h3><div class="no-reviews"><i class="fas fa-spinner fa-spin"></i> Loading reviews...</div>';
-            
-            // Get reviews from Firestore
-            db.collection('reviews')
-                .where('courseId', '==', courseId)
-                .orderBy('date', 'desc')
-                .limit(5)
-                .get()
-                .then(snapshot => {
-                    if (snapshot.empty) {
-                        container.innerHTML = '<h3 class="reviews-title">Recent Reviews</h3><div class="no-reviews">No reviews yet. Be the first to review!</div>';
-                        return;
-                    }
-                    
-                    // Clear container
-                    container.innerHTML = '<h3 class="reviews-title">Recent Reviews</h3>';
-                    
-                    // Add each review
-                    snapshot.forEach(doc => {
-                        const review = doc.data();
-                        const reviewDate = new Date(review.date);
-                        const formattedDate = reviewDate.toLocaleDateString('en-US', { 
-                            year: 'numeric', 
-                            month: 'short', 
-                            day: 'numeric' 
-                        });
-                        
-                        const reviewCard = document.createElement('div');
-                        reviewCard.className = 'review-card';
-                        reviewCard.innerHTML = `
-                            <div class="review-header">
-                                <div class="review-avatar">
-                                    <img src="${review.userPhoto}" alt="${review.userName}">
-                                </div>
-                                <div>
-                                    <div class="review-author">${review.userName}</div>
-                                    <div class="review-date">${formattedDate}</div>
-                                </div>
-                            </div>
-                            <div class="review-stars">
-                                ${'<i class="fas fa-star"></i>'.repeat(review.rating)}
-                                ${'<i class="far fa-star"></i>'.repeat(5 - review.rating)}
-                            </div>
-                            <p>${review.text}</p>
-                        `;
-                        
-                        container.appendChild(reviewCard);
-                    });
-                    
-                    // Calculate and display average rating
-                    calculateAverageRating(courseId);
-                })
-                .catch(error => {
-                    console.error('Error loading reviews:', error);
-                    container.innerHTML = '<h3 class="reviews-title">Recent Reviews</h3><div class="no-reviews">Error loading reviews. Please try again later.</div>';
-                });
-        }
-
-        function calculateAverageRating(courseId) {
-            db.collection('reviews')
-                .where('courseId', '==', courseId)
-                .get()
-                .then(snapshot => {
-                    if (snapshot.empty) {
-                        document.getElementById(`avg-rating-${courseId}`).textContent = 'No ratings yet';
-                        return;
-                    }
-                    
-                    let totalRating = 0;
-                    let reviewCount = 0;
-                    
-                    snapshot.forEach(doc => {
-                        const review = doc.data();
-                        totalRating += review.rating;
-                        reviewCount++;
-                    });
-                    
-                    const averageRating = (totalRating / reviewCount).toFixed(1);
-                    const avgStars = document.getElementById(`avg-stars-${courseId}`);
-                    
-                    // Clear existing stars
-                    avgStars.innerHTML = '';
-                    
-                    // Add full stars
-                    for (let i = 0; i < Math.floor(averageRating); i++) {
-                        avgStars.innerHTML += '<i class="fas fa-star"></i>';
-                    }
-                    
-                    // Add half star if needed
-                    if (averageRating % 1 >= 0.5) {
-                        avgStars.innerHTML += '<i class="fas fa-star-half-alt"></i>';
-                    }
-                    
-                    // Add empty stars
-                    const remaining = 5 - Math.ceil(averageRating);
-                    for (let i = 0; i < remaining; i++) {
-                        avgStars.innerHTML += '<i class="far fa-star"></i>';
-                    }
-                    
-                    document.getElementById(`avg-rating-${courseId}`).textContent = `${averageRating}/5.0 (${reviewCount} reviews)`;
-                })
-                .catch(error => {
-                    console.error('Error calculating average rating:', error);
-                    document.getElementById(`avg-rating-${courseId}`).textContent = 'Error loading rating';
-                });
-        }
-
         function showNotification(message, type) {
             notificationMessage.textContent = message;
             notification.className = `notification ${type} show`;
@@ -1523,27 +1133,9 @@
             }, 3000);
         }
 
-        // Initialize star ratings
-        starRatings.forEach(ratingContainer => {
-            const stars = ratingContainer.querySelectorAll('i');
-            const courseId = ratingContainer.id.split('-')[2];
-            const ratingValue = document.getElementById(`rating-value-${courseId}`);
-            
-            stars.forEach(star => {
-                star.classList.remove('fas', 'active');
-                star.classList.add('far');
-            });
-            
-            ratingValue.textContent = '0/5';
-        });
-
-        // Load reviews for all courses on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            // Load reviews for each course
-            const courses = ['174', '204', '366'];
-            courses.forEach(courseId => {
-                loadReviewsForCourse(courseId);
-            });
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
         });
     </script>
 </body>
